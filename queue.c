@@ -5,6 +5,7 @@ struct Queue{
     struct Queue *next;
 };
 struct Queue *start;
+struct Queue *rear;
 
 // Adding data to the Queue
 void enQueue(int value){
@@ -14,14 +15,16 @@ temp = (struct Queue *)malloc(sizeof(struct Queue));
 temp->next = NULL;
 temp->data = value;
 
-if(start == NULL){
-    start = temp;
+if(start == NULL && rear == NULL){
+    start = rear = temp;
 }else{
-    struct Queue *curr = start;
-    while(curr->next != NULL){
-        curr = curr->next;
-    }
-    curr->next = temp;
+    // struct Queue *curr = start;
+    // while(curr->next != NULL){
+    //     curr = curr->next;
+    // }
+    // curr->next = temp;
+    rear->next = temp;
+    rear = temp;
 }
 
 }
